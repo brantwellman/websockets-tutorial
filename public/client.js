@@ -12,10 +12,10 @@ socket.on('voteTotals', function (totals) {
   voteTotals.innerText = 'These are the totals for all the voters: ' + totals;
 });
 
-var voteStatus = document.getElementById('status-message');
+var statusMessage = document.getElementById('status-message');
 
 socket.on('statusMessage', function (message) {
-  voteStatus.innerText = message;
+  statusMessage.innerText = message;
 });
 
 var buttons = document.querySelectorAll('#choices button');
@@ -29,7 +29,7 @@ for (var i = 0; i < buttons.length; i++) {
 var currentVote = document.getElementById('current-vote');
 
 socket.on('currentVote', function (message) {
-  currentVote.innerText = message;
+  currentVote.innerText = "Your current vote is: " + message;
 });
 
 var voteTally = document.getElementById('vote-tally');

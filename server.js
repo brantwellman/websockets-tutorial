@@ -27,7 +27,7 @@ io.on('connection', function (socket) {
 
   socket.emit('statusMessage', 'You have connected. Message to one client only');
 
-  socket.emit('currentVote', 'Thanks for voting. Your current vote is: ');
+  // socket.emit('currentVote', 'Thanks for voting. Your current vote is: ');
 
   // io.sockets.emit('voteTotals', io.engine.countVotes);
 
@@ -41,7 +41,8 @@ io.on('connection', function (socket) {
   socket.on('message', function (channel, message) {
     if (channel === 'voteCast') {
       votes[socket.id] = message;
-      socket.emit('voteCount', countVotes(votes));
+      io.sockets.emit('voteCount', countVotes(votes));
+      socket.emit('currentVote', message);
     }
   });
 
